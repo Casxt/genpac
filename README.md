@@ -8,7 +8,7 @@
 4. you can also check out pac file named 'pac' in /pac_save_dir
 
 ## Parameter
-|parameter short/long|arg|describe|
+|parameter short/long|value|describe|
 |---------|---|--------|
 |p/pac-proxy|"SOCKS5 127.0.0.1:1080"<br>"PROXY 127.0.0.1:1080"<br>"PROXY http://127.0.0.1:1080"|proxy used in your rule|
 |gfwlist-proxy|"SOCKS5 127.0.0.1:1080"<br>"PROXY 127.0.0.1:1080"<br>"PROXY http://127.0.0.1:1080"|proxy use to get gfw list (you don't need to set this in most case)|
