@@ -2,22 +2,26 @@
 
 # NOTE: This requires GNU getopt.  On Mac OS X and FreeBSD, you have to install this
 # separately; see below.
-echo $@
+echo "$@"
 
-set -- $(getopt -o p: --long pac-proxy:,gfwlist-proxy:: -n 'parse-options' -- "$@")
+OPTIONS=p:
+LONGOPTS=pac-proxy:,gfwlist-proxy::
 
-if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 1 ; fi
+# -use ! and PIPESTATUS to get exit code with errexit set
+# -temporarily store output to be able to check for errors
+# -activate quoting/enhanced mode (e.g. by writing out “--options”)
+# -pass arguments only via   -- "$@"   to separate them correctly
+PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
+# read getopt’s output this way to handle the quoting right:
+eval set -- "$PARSED"
 
 # Note the quotes around `$TEMP': they are essential!
-
-
-echo $@
 
 PAC_PROXY=
 GFWLIST_PROXY=""
 while true; do
     case $1 in
-        -p | --pac-proxy ) PAC_PROXY="$2"; shift 2 ;;
+        -p | --pac-proxy ) PAC_PROXY=$2; shift 2 ;;
         --gfwlist-proxy ) GFWLIST_PROXY=`--gfwlist-proxy="$2"`; shift 2 ;;
         -- ) shift; break ;;
         * ) break ;;
@@ -25,6 +29,8 @@ while true; do
 done
 
 darkhttpd /dist --chroot --index pac --port 80 --daemon
+
+echo "use proxy: '$PAC_PROXY'"
 
 while :
 do
