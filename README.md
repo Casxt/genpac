@@ -20,9 +20,9 @@ help you to share you pac file with a little more safety.
 
 pac file not have any auth function, if it leak, you proxy are leaked.
 
-RandomProxy start genpac container with a new random https proxy, and create config file for caddy that forward this random proxy to a static proxy backend. 
+RandomProxy start genpac container with a new proxy with random domain, and create config file for caddy that forward this random proxy to your proxy backend. 
 
-if some one get your pac file, you  don't need to change your backend, just run RandomProxy, a new pac file will servered, a new random https proxy will forward to you backend, old pac file will disabled at same time.
+if someone get your pac file, you don't need to change your backend, just run RandomProxy, a new pac file will servered, a new random https proxy will forward to you backend, old pac file will disabled at same time.
 
 run RandomProxy every day is enough to keep safe.
 
