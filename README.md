@@ -27,7 +27,8 @@ if someone get your pac file, you don't need to change your backend, just run Ra
 run RandomProxy every day is enough to keep safe.
 
 ###  Usage
-
+you need install caddy(with forward proxy plugin) and docker first.
+whats more, you should have caddy.service to manager caddy, caddy.service example already provided in this repo named caddy.service.
 `bash RandomProxy.sh -d your_base_domain -s your_backend`
 
 ### Parameter
